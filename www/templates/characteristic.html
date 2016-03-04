@@ -1,0 +1,44 @@
+<ion-view>
+  <ion-nav-bar>
+    <ion-nav-back-button></ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-header-bar align-title="center" class="bar-positive">
+    <h1 class="title">{{selectedCharacteristic.uuid}}</h1>
+  </ion-header-bar>
+  <ion-content>
+      <div class="row text-center">
+        <div class="col">
+          <a class="button button-balanced button-small" ng-click="descriptors(selectedDevice.address, selectedService.uuid, selectedCharacteristic.uuid)">Descriptors</a>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col">
+          <a class="button button-balanced button-small" ng-click="read(selectedDevice.address, selectedService.uuid, selectedCharacteristic.uuid)" ng-class="{strikethrough:!selectedCharacteristic.properties.read}">Read</a>
+        </div>
+        <div class="col">
+          <a class="button button-balanced button-small" ng-click="write(selectedDevice.address, selectedService.uuid, selectedCharacteristic.uuid)" ng-class="{strikethrough:!selectedCharacteristic.properties.write}">Write</a>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col">
+          <a class="button button-balanced button-small" ng-click="subscribe(selectedDevice.address, selectedService.uuid, selectedCharacteristic.uuid)" ng-class="{strikethrough:!(selectedCharacteristic.properties.notify || selectedCharacteristic.properties.indicate)}">Subscribe</a>
+        </div>
+        <div class="col">
+          <a class="button button-energized button-small" ng-click="unsubscribe(selectedDevice.address, selectedService.uuid, selectedCharacteristic.uuid)" ng-class="{strikethrough:!(selectedCharacteristic.properties.notify || selectedCharacteristic.properties.indicate)}">Unsubscribe</a>
+        </div>
+      </div>
+      <ion-list>
+        <ion-item ng-repeat="descriptor in selectedCharacteristic.descriptors track by descriptor.uuid">
+          {{descriptor.uuid}}
+          <div class="row text-center">
+            <div class="col">
+              <a class="button button-balanced button-small" ng-click="readDescriptor(selectedDevice.address, selectedService.uuid, selectedCharacteristic.uuid, descriptor.uuid)">Read</a>
+            </div>
+            <div class="col">
+              <a class="button button-balanced button-small" ng-click="writeDescriptor(selectedDevice.address, selectedService.uuid, selectedCharacteristic.uuid, descriptor.uuid)">Write</a>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+  </ion-content>
+</ion-view>

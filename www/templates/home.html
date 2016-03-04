@@ -1,0 +1,37 @@
+<ion-header-bar align-title="center" class="bar-positive">
+  <h1 class="title">Bluetooth LE</h1>
+</ion-header-bar>
+<ion-content>
+  <h4>Central</h4>
+  <div class="row text-center">
+    <div class="col"><a class="button button-balanced button-small" ng-click="initialize()">Intialize</a></div>
+    <div class="col"><a class="button button-energized button-small" ng-click="enable()">Enable</a></div>
+    <div class="col"><a class="button button-energized button-small" ng-click="disable()">Disable</a></div>
+  </div>
+  <div class="row text-center">
+    <div class="col"><a class="button button-balanced button-small" ng-click="startScan()">Start Scan</a></div>
+    <div class="col"><a class="button button-energized button-small" ng-click="stopScan()">Stop Scan</a></div>
+    <div class="col"><a class="button button-balanced button-small" ng-click="retrieveConnected()">Retrv Connected</a></div>
+  </div>
+  <div class="row text-center">
+    <div class="col"><a class="button button-balanced button-small" ng-click="isInitialized()">Is Initialized</a></div>
+    <div class="col"><a class="button button-balanced button-small" ng-click="isEnabled()">Is Enabled</a></div>
+    <div class="col"><a class="button button-balanced button-small" ng-click="isScanning()">Is Scanning</a></div>
+  </div>
+  <div class="row text-center">
+    <div class="col"><a class="button button-balanced button-small" ng-click="hasPermission()">Has Permission</a></div>
+    <div class="col"><a class="button button-balanced button-small" ng-click="requestPermission()">Request Permission</a></div>
+    <div class="col"><a class="button button-balanced button-small" ng-click="isLocationEnabled()">Is Location Enabled</a></div>
+  </div>
+  <div ng-hide="isEmpty(devices)" ng-cloak>
+    <h4>Devices</h4>
+    <ion-list>
+      <ion-item ng-repeat="device in devices track by device.address" ng-click="goToDevice(device)" class="item-icon-right">
+        {{device.name | null}}
+        <div><small>&lt;{{device.address}}&gt;</small></div>
+        <i class="icon ion-chevron-right"></i>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+</ion-view>

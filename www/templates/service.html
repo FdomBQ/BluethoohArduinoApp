@@ -1,0 +1,19 @@
+<ion-view>
+  <ion-nav-bar>
+    <ion-nav-back-button></ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-header-bar align-title="center" class="bar-positive">
+    <h1 class="title">{{selectedService.uuid}}</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="row text-center">
+      <div class="col"><a class="button button-balanced button-small" ng-click="characteristics(selectedDevice.address, selectedService.uuid)">Characteristics</a></div>
+    </div>
+    <ion-list>
+      <ion-item ng-repeat="characteristic in selectedService.characteristics track by characteristic.uuid" ng-click="goToCharacteristic(characteristic)">
+        {{characteristic.uuid}}
+        <i class="icon ion-chevron-right"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
